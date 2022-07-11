@@ -7,58 +7,13 @@
     <link href="style.css" rel="stylesheet">
     <!-- CSS only -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
-    <script>
-        console.log('hola');
-
-        var CantidadSistemas = 2;
-        console.log(CantidadSistemas + ' sistemas existentes');
-
-        for (var i = 0; i < 2; i++) {
-            console.log(i)
-        }
-
-
-
-        sistemas = ['Liquidaciones', 'Reclamos'];
-
-        for (var s of sistemas) {
-            console.log(s);
-        }
-
-        for (var s = 0; s < sistemas.length; s++) {
-            console.log(sistemas[s]);
-        }
-
-        sistemas.forEach(element => {
-            console.log(element);
-        });
-
-        function actualizarControles() {
-            var control = document.getElementById('tabla');
-            console.log(control.childNodes[1]);
-            var tr = control.childNodes[1].appendChild(document.createElement('tr'));
-            tr.addEventListener('click', function() {
-                for (var tr1 of control.childNodes[1].childNodes) {
-                    tr1.className = '';
-                }
-                tr.className = 'table-primary';
-            })
-
-
-
-
-            var td = tr.appendChild(document.createElement('td'))
-
-            td.innerText = sistemas[0]
-
-            // control.childNodes[1].innerHTML = '<tr><td>' + sistemas[0] + '</td></tr>';
-
-        }
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2" crossorigin="anonymous"></script>
+    <script src="scripts.js">
     </script>
 
 </head>
 
-<body onload="actualizarControles()">
+<body onload="inicializarTabla()">
 
     <nav class="navbar navbar-expand-lg bg-light">
         <div class="container-fluid">
@@ -82,39 +37,41 @@
 
     <div class="container">
 
-        <h1 class="titulo">Listado de sistemas</h1>
-        <h2>Revise el listado para editar las preferencias</h2>
+        <div class="p-5 mb-4 bg-light rounded-3">
+            <div class="container-fluid py-5">
+                <h1 class="display-5 fw-bold">Listado de sistemas</h1>
+                <p class="col-md-8 fs-4">Utilizando funciones de javascript puede agregar, modificar y quitar sistemas de la lista
+                </p>
+            </div>
+        </div>
 
-        <div class="alert alert-warning">Puede editar los nombres o agregar nuevos sistemas</div>
+        <h1 class="titulo"></h1>
+        <h2></h2>
 
-        <table class="table" id="tabla">
-            <tr>
-                <th>Nombre del sistemas</th>
-                <th>Cantidad de usuarios</th>
-                <th>Nombre del cliente</th>
-            </tr>
-            <tr>
-                <td>Liquidaciones</td>
-                <td>10</td>
-                <td>Dirección de personas</td>
-            </tr>
-            <tr>
-                <td>Reclamos</td>
-                <td>100</td>
-                <td>Atención al vecino</td>
-            </tr>
-        </table>
+        <div>
+            <table class="table" id="tabla">
+            </table>
+        </div>
+
         <div class="row">
             <div class="col-3">
-                <input type="text" class="form-control" placeholder="Nuevo nombre de sistema" />
+                <input type="text" class="form-control" id="cSistema" placeholder="Nuevo nombre de sistema" />
             </div>
             <div class="col-3">
-                <input type="number" class="col-3 form-control" placeholder="cantidad de usuarios" />
+                <input type="number" class="col-3 form-control" id="cUsuarios" placeholder="cantidad de usuarios" />
             </div>
             <div class="col-3">
-                <input type="text" class="col-3 form-control" placeholder="Nuevo nombre del cliente" />
+                <input type="text" class="col-3 form-control" id="cCliente" placeholder="Nuevo nombre del cliente" />
             </div>
-            <button type="button" onclick="actualizarControles()" class="col-3 btn btn-primary">Nuevo sistema</button>
+            <button type="button" onclick="agregarSistema()" class="col-3 btn btn-primary" id="agregar">Agregar</button>
+        </div>
+        <div class="row mt-2 invisible" id="error">
+            <div class="col-12">
+                <div class="alert alert-danger" role="alert">
+                    <strong>Error</strong> Debe completar todos los campos
+                </div>
+            </div>
+
         </div>
     </div>
 </body>
