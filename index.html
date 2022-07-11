@@ -7,9 +7,128 @@
     <link href="style.css" rel="stylesheet">
     <!-- CSS only -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
+
+    <script>
+        var sistemas = [];
+
+
+        var o = {
+            nombre: 'Juan',
+            apellido: 'Perez',
+            edad: 34
+        };
+
+
+        var clubes = [{
+            "nombre": 'Boca'
+        }, {
+            nombre: 'River'
+        }, {
+            nombre: 'Independiente'
+        }, {
+            nombre: 'Racing'
+        }];
+
+
+        o.edad++;
+        o.clubes = clubes;
+
+        var st = JSON.stringify(o);
+
+        console.log(st);
+
+
+        function saludo() {
+            alert('Hola')
+        }
+
+
+        function nombreSistema() {
+            console.log(document.getElementById('nombre'));
+
+            var nombre = document.getElementById('nombre').value;
+            console.log(nombre)
+                // alert(nombre)
+
+
+
+
+
+        }
+
+
+        function agregarItem() {
+
+            var nombre = document.getElementById('nombre').value;
+            var usuarios = document.getElementById('usuarios').value;
+            var cliente = document.getElementById('cliente').value;
+
+
+            if (nombre == '' || usuarios == '' || cliente == '') {
+                alert('Todos los campos son obligatorios');
+                return;
+            }
+
+
+            if (existeSistema(nombre)) {
+                alert('el sistema ya existe');
+                return;
+            }
+
+            var tabla = document.getElementById('tabla');
+
+            var tr = document.createElement('tr');
+            tr.addEventListener('click', function() {
+
+                for (var i = 0; i < tabla.childNodes[1].childNodes.length; i++) {
+                    tabla.childNodes[1].childNodes[[i]].className = "";
+                }
+                tr.className = "table-success";
+            });
+
+            var td = document.createElement('td');
+            td.innerText = nombre;
+            tr.appendChild(td);
+
+            var td = document.createElement('td');
+            td.innerText = usuarios;
+            tr.appendChild(td);
+
+            var td = document.createElement('td');
+            td.innerText = cliente;
+            tr.appendChild(td);
+
+            tabla.childNodes[1].appendChild(tr);
+
+            sistemas.push({
+                nombre: nombre,
+                usuarios: usuarios,
+                cliente: cliente
+            });
+
+            document.getElementById('nombre').value = "";
+            document.getElementById('usuarios').value = "";
+            document.getElementById('cliente').value = "";
+
+
+            console.table(sistemas);
+        }
+
+
+        function existeSistema(nombre) {
+            for (var i = 0; i < sistemas.length; i++) {
+                if (sistemas[i].nombre.toUpperCase() == nombre.toUpperCase()) {
+                    return true;
+                }
+            }
+            return false;
+        }
+    </script>
+
+
 </head>
 
-<body>
+<body onload="nombreSistema()">
 
     <nav class="navbar navbar-expand-lg bg-light">
         <div class="container-fluid">
@@ -38,36 +157,28 @@
 
         <div class="alert alert-warning">Puede editar los nombres o agregar nuevos sistemas</div>
 
-        <table class="table">
+        <table class="table" id="tabla">
             <tr>
                 <th>Nombre del sistemas</th>
                 <th>Cantidad de usuarios</th>
                 <th>Nombre del cliente</th>
             </tr>
-            <tr>
-                <td>Liquidaciones</td>
-                <td>10</td>
-                <td>Dirección de personas</td>
-            </tr>
-            <tr>
-                <td>Reclamos</td>
-                <td>100</td>
-                <td>Atención al vecino</td>
-            </tr>
+
         </table>
         <div class="row">
             <div class="col-3">
-                <input type="text" class="form-control" placeholder="Nuevo nombre de sistema" />
+                <input id="nombre" type="text" class="form-control" placeholder="Nuevo nombre de sistema" />
             </div>
             <div class="col-3">
-                <input type="number" class="col-3 form-control" placeholder="cantidad de usuarios" />
+                <input id="usuarios" type="number" class="col-3 form-control" placeholder="cantidad de usuarios" />
             </div>
             <div class="col-3">
-                <input type="text" class="col-3 form-control" placeholder="Nuevo nombre del cliente" />
+                <input id="cliente" type="text" class="col-3 form-control" placeholder="Nuevo nombre del cliente" />
             </div>
-            <button class="col-3 btn btn-primary">Nuevo sistema</button>
+            <button class="col-3 btn btn-primary" onclick="agregarItem();">Nuevo sistema</button>
         </div>
     </div>
 </body>
+
 
 </html>
