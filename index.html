@@ -7,9 +7,58 @@
     <link href="style.css" rel="stylesheet">
     <!-- CSS only -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
+    <script>
+        console.log('hola');
+
+        var CantidadSistemas = 2;
+        console.log(CantidadSistemas + ' sistemas existentes');
+
+        for (var i = 0; i < 2; i++) {
+            console.log(i)
+        }
+
+
+
+        sistemas = ['Liquidaciones', 'Reclamos'];
+
+        for (var s of sistemas) {
+            console.log(s);
+        }
+
+        for (var s = 0; s < sistemas.length; s++) {
+            console.log(sistemas[s]);
+        }
+
+        sistemas.forEach(element => {
+            console.log(element);
+        });
+
+        function actualizarControles() {
+            var control = document.getElementById('tabla');
+            console.log(control.childNodes[1]);
+            var tr = control.childNodes[1].appendChild(document.createElement('tr'));
+            tr.addEventListener('click', function() {
+                for (var tr1 of control.childNodes[1].childNodes) {
+                    tr1.className = '';
+                }
+                tr.className = 'table-primary';
+            })
+
+
+
+
+            var td = tr.appendChild(document.createElement('td'))
+
+            td.innerText = sistemas[0]
+
+            // control.childNodes[1].innerHTML = '<tr><td>' + sistemas[0] + '</td></tr>';
+
+        }
+    </script>
+
 </head>
 
-<body>
+<body onload="actualizarControles()">
 
     <nav class="navbar navbar-expand-lg bg-light">
         <div class="container-fluid">
@@ -38,7 +87,7 @@
 
         <div class="alert alert-warning">Puede editar los nombres o agregar nuevos sistemas</div>
 
-        <table class="table">
+        <table class="table" id="tabla">
             <tr>
                 <th>Nombre del sistemas</th>
                 <th>Cantidad de usuarios</th>
@@ -65,7 +114,7 @@
             <div class="col-3">
                 <input type="text" class="col-3 form-control" placeholder="Nuevo nombre del cliente" />
             </div>
-            <button class="col-3 btn btn-primary">Nuevo sistema</button>
+            <button type="button" onclick="actualizarControles()" class="col-3 btn btn-primary">Nuevo sistema</button>
         </div>
     </div>
 </body>

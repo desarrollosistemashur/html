@@ -1,3 +1,8 @@
 .container {
     padding-top: 40px;
 }
+
+.seleccionado {
+    background-color: red;
+    color: white;
+}
