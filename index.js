@@ -17,13 +17,17 @@ function inicializarTabla() {
 }
 
 function agregar() {
+    if (sistemaSeleccionado)
+        id = sistemaSeleccionado.id
+    else
+        id = Date.now();
+
     var sistema = document.getElementById('cSistema').value;
     var usuarios = document.getElementById('cUsuarios').value;
     var cliente = document.getElementById('cCliente').value;
-    agregarSistema(Date.now(), sistema, usuarios, cliente);
+    agregarSistema(id, sistema, usuarios, cliente);
     grabarSistemas();
 }
-
 
 function agregarSistema(id, sistema, usuarios, cliente) {
     var control = document.getElementById('tabla');
@@ -33,13 +37,11 @@ function agregarSistema(id, sistema, usuarios, cliente) {
         return;
     }
 
-
     if (sistemaSeleccionado == undefined) {
-
         var tr = control.childNodes[0].appendChild(document.createElement('tr'));
         tr.id = id;
         tr.addEventListener('click', function() {
-            seleccionar(td);
+            seleccionar(tr, id);
         })
     } else {
 
@@ -99,7 +101,6 @@ function desseleccionarTodos() {
     }
 }
 
-
 function grabarSistemas() {
     var sistemas = JSON.stringify(this.sistemas);
     localStorage.setItem('sistemas', sistemas);
@@ -112,8 +113,7 @@ function cargarSistemas() {
     }
 }
 
-
-function seleccionar(td) {
+function seleccionar(tr, id) {
     desseleccionarTodos();
     tr.className = 'table-active';
     sistemaSeleccionado = sistemas.find(sistema => sistema.id == id);
