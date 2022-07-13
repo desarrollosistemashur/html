@@ -37,16 +37,34 @@
 
     <div class="container">
 
-        <h1 class="titulo">Listado de sistemas</h1>
-        <h2>Revise el listado para editar las preferencias</h2>
+        <div class="p-5 mb-4 bg-light rounded-3">
+            <div class="container-fluid py-5">
+                <h1 class="display-5 fw-bold">Listado de sistemas</h1>
+                <p class="col-md-8 fs-4">Revise el listado para editar las preferencias</p>
+                <p class="col-md-8 fs-4">Puede editar los nombres o agregar nuevos sistemas</p>
 
-        <div class="alert alert-warning">Puede editar los nombres o agregar nuevos sistemas</div>
+
+            </div>
+        </div>
+
+
+        <h1 class="titulo"></h1>
+        <h2></h2>
+
+
+        <select class="form-control" id="orden" onchange="ordenar()">
+            <option value="" disabled>Ordenar por...</option>
+            <option value="nombre">Nombre</option>
+            <option value="usuarios">Usuarios</option>
+            <option value="cliente">cliente</option>
+        </select>
 
         <table class="table" id="tabla">
             <tr>
                 <th>Nombre del sistemas</th>
                 <th>Cantidad de usuarios</th>
                 <th>Nombre del cliente</th>
+                <th></th>
             </tr>
 
         </table>

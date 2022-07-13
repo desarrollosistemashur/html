@@ -7,6 +7,18 @@ function cargarSistemas() {
     if (sistemas == null) {
         sistemas = [];
     }
+    recargarTabla()
+}
+
+function recargarTabla() {
+    var tabla = document.getElementById('tabla');
+    tabla.childNodes[1].innerHTML = `<tr>
+    <th>Nombre del sistemas</th>
+    <th>Cantidad de usuarios</th>
+    <th>Nombre del cliente</th>
+    <th></th>
+</tr>
+`;
 
     for (var i = 0; i < sistemas.length; i++) {
         agregar(sistemas[i].nombre, sistemas[i].usuarios, sistemas[i].cliente);
@@ -95,6 +107,26 @@ function agregar(nombre, usuarios, cliente) {
     td.innerText = cliente;
     tr.appendChild(td);
 
+
+    var td = document.createElement('td');
+    var btn = document.createElement('button');
+    btn.innerText = 'Eliminar';
+    btn.className = 'btn btn-danger';
+    btn.addEventListener('click', function() {
+        if (confirm('esta seguro que desea borrar el item?')) {
+            // tr.remove();
+            sistemas = sistemas.filter(function(sistema) {
+                return sistema.nombre != nombre;
+            });
+            recargarTabla();
+            localStorage.setItem('sistemas', JSON.stringify(sistemas));
+            desseleccionarTodo();
+        }
+
+    })
+
+    td.appendChild(btn);
+    tr.appendChild(td);
     tabla.childNodes[1].appendChild(tr);
     desseleccionarTodo();
 
@@ -125,4 +157,42 @@ function existeSistema(nombre, sistemaSelecc) {
         }
     }
     return false;
+}
+
+
+function ordenar() {
+
+
+    var orden = document.getElementById('orden').value;
+    console.log(orden)
+
+    switch (orden) {
+        case 'nombre':
+            sistemas = sistemas.sort(function(a, b) {
+                if (a.nombre.toUpperCase() > b.nombre.toUpperCase()) {
+                    return 1;
+                } else { return -1 }
+            });
+            break;
+        case 'usuarios':
+            sistemas = sistemas.sort(function(a, b) {
+                if (parseInt(a.usuarios) > parseInt(b.usuarios)) {
+                    return 1;
+                } else { return -1 }
+            });
+            break;
+        case 'cliente':
+            sistemas = sistemas.sort(function(a, b) {
+                if (a.cliente.toUpperCase() > b.cliente.toUpperCase()) {
+                    return 1;
+                } else { return -1 }
+            });
+            break;
+
+    }
+    recargarTabla();
+
+
+
+
 }
