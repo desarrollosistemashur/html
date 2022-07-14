@@ -8,7 +8,67 @@ function cargarSistemas() {
         sistemas = [];
     }
     recargarTabla()
+
+    dividirPorCliente()
+
+
 }
+
+function dividirPorCliente() {
+    /*dividir por cliente*/
+    var PorCliente = [{
+            "cliente": "Particular",
+            "sistemas": [{
+                    "nombre": "sistema 1",
+                    "usuarios": "97",
+                    "cliente": "Particular"
+                },
+                {
+                    "nombre": "Sistema 3",
+                    "usuarios": "951",
+                    "cliente": "Particular"
+                }
+            ]
+        },
+        {
+            "cliente": "Vecinos",
+            "sistemas": [{
+                "nombre": "Sistema 2",
+                "usuarios": "100",
+                "cliente": "Vecinos"
+            }]
+        }
+    ];
+    var divClientes = document.getElementById('porCliente');
+    divClientes.innerHTML = '';
+
+
+    for (var i = 0; i < PorCliente.length; i++) {
+
+        console.log(PorCliente[i].cliente);
+        var itemCliente = document.createElement('ul');
+        itemCliente.className = "list-group separado";
+
+        var itemSistema = document.createElement('li');
+        itemSistema.className = "list-group-item active";
+        itemSistema.innerText = PorCliente[i].cliente;
+        itemCliente.appendChild(itemSistema);
+
+
+        for (var item of PorCliente[i].sistemas) {
+            var itemSistema = document.createElement('li');
+            itemSistema.className = "list-group-item";
+            itemSistema.innerText = item.nombre;
+            itemCliente.appendChild(itemSistema);
+
+        }
+
+        divClientes.appendChild(itemCliente);
+    }
+
+}
+
+
 
 function recargarTabla() {
     var tabla = document.getElementById('tabla');
@@ -23,6 +83,8 @@ function recargarTabla() {
     for (var i = 0; i < sistemas.length; i++) {
         agregar(sistemas[i].nombre, sistemas[i].usuarios, sistemas[i].cliente);
     }
+
+    dividirPorCliente()
 }
 
 function agregarItem() {

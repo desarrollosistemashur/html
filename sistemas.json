@@ -1,0 +1,16 @@
+[{
+        "nombre": "sistema 1",
+        "usuarios": "97",
+        "cliente": "Particular"
+    },
+    {
+        "nombre": "Sistema 3",
+        "usuarios": "951",
+        "cliente": "Particular"
+    },
+    {
+        "nombre": "Sistema 2",
+        "usuarios": "100",
+        "cliente": "Vecinos"
+    }
+]
