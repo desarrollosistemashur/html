@@ -10,8 +10,6 @@ function cargarSistemas() {
     recargarTabla()
 
     dividirPorCliente()
-
-
 }
 
 function dividirPorCliente() {
