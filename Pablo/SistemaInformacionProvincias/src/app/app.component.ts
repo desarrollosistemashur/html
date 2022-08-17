@@ -9,6 +9,8 @@ export class AppComponent implements OnInit{
   title = 'SistemaInformacionProvincias';
   
   public provincias:any[] = [];
+  public provinciaSeleccionada:any;
+  
   
   ngOnInit(): void {
     this.consultarProvincias();
@@ -26,5 +28,15 @@ export class AppComponent implements OnInit{
         
   }
 
+  seleccionar(p: any){
+  if(this.provinciaSeleccionada == p)
+  {
+    this.provinciaSeleccionada = undefined; 
+  }
+  else{
+    this.provinciaSeleccionada=p;
+  }
+
+  }
 
 }
