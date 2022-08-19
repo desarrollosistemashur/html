@@ -1,4 +1,5 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { outputAst } from '@angular/compiler';
+import { Component, OnInit, Input, EventEmitter, Output } from '@angular/core';
 
 @Component({
   selector: 'app-tarjeta-provincias',
@@ -14,5 +15,5 @@ title="Provincias";
   ngOnInit(): void {
 
   }
-
+  
 }

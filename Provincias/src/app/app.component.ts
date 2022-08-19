@@ -7,7 +7,9 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'Provincias';
+ public provinciaseleccionada: any;
   public provinciasApi: any=[];
+  public num: any;
     ngOnInit(): void {
     this.sacarApi();
   }
@@ -17,5 +19,15 @@ export class AppComponent {
     .then(provinciasApi => this.provinciasApi=provinciasApi.provincias);
     
 }
-
+selec(p: any){
+if(this.provinciaseleccionada== p)
+{
+  this.provinciaseleccionada = undefined;
+}
+else
+{
+  this.provinciaseleccionada=p;
+  //agregarle aca lo de las municipalidades
+}
+}
 }
