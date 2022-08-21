@@ -1,5 +1,12 @@
 <div class="row">
-<div *ngFor="let p of provincias" style="width: 18rem;">
-<app-tarjeta-provincia  *ngIf="p==provinciaSeleccionada || provinciaSeleccionada == undefined" [prov]="p" (click)="seleccionar(p)"></app-tarjeta-provincia>
-</div>
+    <div *ngFor="let p of provincias" style="width: 18rem;">
+        <app-tarjeta-provincia  *ngIf="p == provinciaSeleccionada || provinciaSeleccionada == undefined"
+         [prov]="p" (click)="seleccionar(p)"></app-tarjeta-provincia>
+         
+         <ul *ngIf = "p == provinciaSeleccionada">
+            <li *ngFor="let m of p.municipios">
+                {{ m.nombre}}
+            </li>
+         </ul>
+    </div>
 </div>

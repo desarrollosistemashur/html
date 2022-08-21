@@ -6,6 +6,7 @@ import { Component, Input, OnInit, Output } from '@angular/core';
   styleUrls: ['./tarjeta-provincia.component.scss']
 })
 export class TarjetaProvinciaComponent implements OnInit {
+  
   @Input() prov: any;
 
   constructor() { }
