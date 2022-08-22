@@ -1,0 +1,16 @@
+
+<div class="mx-auto" style="width: 64rem; background-color: teal; padding: 12px;">
+  <div *ngFor="let p of provincias">
+    <app-provincias 
+          *ngIf="!prov_seleccionada || prov_seleccionada == p" 
+          [prov]="p" 
+          (click)="seleccionar_municipio(p)">
+    </app-provincias>
+    <div *ngIf = "prov_seleccionada == p" class="card mx-auto" style="width: 48rem; margin-top: 20px">
+      <div>
+        <h3> Provincias: </h3>
+        <h5 *ngFor = "let m of municipios"></h5>
+      </div>
+    </div>
+  </div>
+</div>
