@@ -1,15 +1,20 @@
 
-<div class="mx-auto" style="width: 64rem; background-color: teal; padding: 12px;">
-  <div *ngFor="let p of provincias">
+<div class = "mx-auto" style = "width: 64rem; background-color: teal; padding: 12px;">
+  <div *ngFor = "let p of provincias">
     <app-provincias 
           *ngIf="!prov_seleccionada || prov_seleccionada == p" 
           [prov]="p" 
           (click)="seleccionar_municipio(p)">
     </app-provincias>
-    <div *ngIf = "prov_seleccionada == p" class="card mx-auto" style="width: 48rem; margin-top: 20px">
+    <div *ngIf = "prov_seleccionada == p" class = "card mx-auto" style = "width: 48rem; margin-top: 20px">
       <div>
-        <h3> Provincias: </h3>
-        <h5 *ngFor = "let m of municipios"></h5>
+        <h3 style = "padding: 12px"> Municipios: </h3>
+        <hr>
+        <div *ngFor = "let m of municipios" style = "padding: 12px">
+          <h5>{{m.nombre}}</h5>
+          <p>coordenadas: {{m.centroide.lat}}, {{m.centroide.lon}}</p>
+          <p>id: {{m.id}}</p>
+        </div>
       </div>
     </div>
   </div>

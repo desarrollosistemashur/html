@@ -27,7 +27,7 @@ export class AppComponent implements OnInit {
 
 
   public consultar_municipios(id: number) {
-    this.municipios = fetch("https://apis.datos.gob.ar/georef/api/municipios?provincia" + id + "&max=2000")
+    this.municipios = fetch("https://apis.datos.gob.ar/georef/api/municipios?provincia=" + id + "&max=2000")
       .then(R=>R.json())
       .then(datos=>{
         this.municipios = datos.municipios;
