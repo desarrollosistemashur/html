@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, ɵclearResolutionOfComponentResourcesQueue } from '@angular/core';
 
 @Component({
   selector: 'app-root',
@@ -9,6 +9,7 @@ export class AppComponent {
   title = 'Provincias';
  public provinciaseleccionada: any;
   public provinciasApi: any=[];
+  public municipioApi: any=[];
   public num: any;
     ngOnInit(): void {
     this.sacarApi();
@@ -17,7 +18,8 @@ export class AppComponent {
     fetch(" https://apis.datos.gob.ar/georef/api/provincias")
     .then(response=>response.json())
     .then(provinciasApi => this.provinciasApi=provinciasApi.provincias);
-    
+    fetch(" https://apis.datos.gob.ar/georef/api/municipios?provincia=codigo_de_provincia&max=2000")
+    .then(response=>response.json())
 }
 selec(p: any){
 if(this.provinciaseleccionada== p)
