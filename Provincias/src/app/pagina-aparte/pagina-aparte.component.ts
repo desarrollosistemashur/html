@@ -8,7 +8,7 @@ import { ActivatedRoute } from '@angular/router';
 })
 export class PaginaAparteComponent implements OnInit {
  public prov: any={};
- public municipioApi: any={}
+ public municipioApi: any={};
   constructor(route:ActivatedRoute) { 
     this.prov.id=route.snapshot.paramMap.get("id");
     this.prov.nombre=route.snapshot.paramMap.get("nombre");
@@ -23,6 +23,6 @@ export class PaginaAparteComponent implements OnInit {
   apiMunicipio(){
     fetch(" https://apis.datos.gob.ar/georef/api/municipios?provincia=p&max=2000")
       .then(response=>response.json())
-      .then(municipioApi => this.municipioApi=municipioApi.nombre +this.provinciasApi.id)
+      .then(municipioApi => this.municipioApi=municipioApi.nombre)
   }
 }
