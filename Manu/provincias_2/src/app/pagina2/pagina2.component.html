@@ -1,0 +1,13 @@
+<!-- *ngIf="!prov_seleccionada || prov_seleccionada == p" -->
+<app-provincias 
+    [prov]="p" 
+    routerLink="/pag1" routerLinkActive="active">
+</app-provincias>
+<div class="container" routerLink="/pag1" routerLinkActive="active">>
+    <h2>Municipios</h2>
+    <div *ngFor = "let m of municipios">
+        <hr>
+        <h5>{{m.nombre}}</h5>
+        <p>coordenadas: {{m.centroide.lat}}, {{m.centroide.lon}}</p>
+    </div>
+</div>

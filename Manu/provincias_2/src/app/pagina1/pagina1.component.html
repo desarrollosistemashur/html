@@ -1,0 +1,21 @@
+<!--(click)="seleccionar_municipio(p)"-->
+<div class = "mx-auto" style = "width: 64rem; background-color: teal; padding: 12px;">
+    <div *ngFor = "let p of provincias">
+      <app-provincias 
+            *ngIf="!prov_seleccionada || prov_seleccionada == p" 
+            [prov]="p" 
+            routerLink="/pag2/{{p.id}}/{{p.nombre}}/{{p.centroide.lat}}/{{p.centroide.lon}}" routerLinkActive="active">
+      </app-provincias>
+      <div *ngIf = "prov_seleccionada == p" class = "card mx-auto" style = "width: 48rem; margin-top: 20px">
+        <div>
+          <h3 style = "padding: 12px"> Municipios: </h3>
+          <hr>
+          <div *ngFor = "let m of municipios" style = "padding: 12px">
+            <h5>{{m.nombre}}</h5>
+            <p>coordenadas: {{m.centroide.lat}}, {{m.centroide.lon}}</p>
+            <p>id: {{m.id}}</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
