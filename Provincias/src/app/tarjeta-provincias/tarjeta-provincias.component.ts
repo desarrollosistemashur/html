@@ -8,7 +8,8 @@ import { Component, OnInit, Input, EventEmitter, Output } from '@angular/core';
 })
 export class TarjetaProvinciasComponent implements OnInit {
 @Input() prov: any;
-
+@Input() pagina: any;
+@Input() municipioApi: any;
   constructor() { }
 title="Provincias";
 

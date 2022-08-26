@@ -1,6 +1,6 @@
 
 <div class="row" >
-    <div *ngFor="let p of provinciasApi" style="width:18rem;{{(p==provinciaseleccionada || provinciaseleccionada==undefined)?'':'display:none'}}">
+    <div *ngFor="let p of provinciasApi" [style]="estilo">
         <app-tarjeta-provincias routerLink="/paginaAparte/{{p.id}}/{{p.nombre}}/{{p.centroide.lat}}/{{p.centroide.lon}}" [prov] ="p"></app-tarjeta-provincias>
     </div>
 </div>

@@ -11,11 +11,12 @@ export class Pagina2Component implements OnInit {
   public provinciasApi: any=[];
   public municipioApi: any=[];
   public num: any;
+  public estilo: string = 'width:18rem;'
   constructor() { }
 
   ngOnInit(): void {
     this.sacarApi();
-    this.apiMunicipio();
+   
   }
   sacarApi(){
     fetch(" https://apis.datos.gob.ar/georef/api/provincias")
@@ -24,11 +25,6 @@ export class Pagina2Component implements OnInit {
     
 }
 
-apiMunicipio(){
-  fetch(" https://apis.datos.gob.ar/georef/api/municipios?provincia=p&max=2000")
-    .then(response=>response.json())
-    .then(municipioApi => this.municipioApi=municipioApi.nombre +this.provinciasApi.id)
-}
 selec(p: any){
 if(this.provinciaseleccionada== p)
 {
